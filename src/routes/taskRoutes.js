@@ -1,10 +1,9 @@
 import express from 'express';
-
 const router = express.Router();
 
 // Ruta de prueba
 router.get('/', (req, res) => {
-  res.send('Rutas de tareas funcionando correctamente');
+  res.json({ message: "API TaskManager funcionando correctamente" });
 });
 
 export default router;

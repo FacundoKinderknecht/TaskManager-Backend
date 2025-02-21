@@ -11,7 +11,10 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173', //Permite la comunicacion del Frontend con el Backend
+    credentials:true, //Permitir posibles cookies
+}));
 app.use(express.json());
 
 // Conectar a la base de datos
