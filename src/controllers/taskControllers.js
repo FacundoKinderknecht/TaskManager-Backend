@@ -1,7 +1,6 @@
 import Task from "../models/Task.js"
 
 //Obtener todas las tareas
-
 export const getTasks = async (req, res) =>{
     try {
         const tasks = await Task.find();
