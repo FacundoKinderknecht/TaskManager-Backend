@@ -1,27 +1,35 @@
 import Task from "../models/Task.js"
 
-//Obtener todas las tareas
-export const getTasks = async (req, res) =>{
+// Obtener todas las tareas del usuario autenticado
+export const getTasks = async (req, res) => {
     try {
-        const tasks = await Task.find();
+        const tasks = await Task.find({ userId: req.user.id }); // Filtra por usuario
         res.json(tasks);
-    } catch(error){
-        res.status(500).json({error: "Error al obtener las tareas"});
+    } catch (error) {
+        res.status(500).json({ error: "Error al obtener las tareas" });
+    }
+};
+
+// Crear una nueva tarea asociada al usuario
+export const createTask = async (req, res) => {
+    try {
+        const { title, description } = req.body;
+        const newTask = new Task({
+            title,
+            description,
+            completed: false,
+            userId: req.user.id // Asigna la tarea al usuario autenticado
+        });
+        await newTask.save();
+        res.json(newTask);
+    } catch (error) {
+        res.status(500).json({ error: "Error al crear la tarea" });
     }
 };
 
 
-// Crear una nueva tarea
-export const createTask = async (req, res) => {
-    try {
-      const { title, description } = req.body;
-      const newTask = new Task({ title, description });
-      await newTask.save();
-      res.status(201).json(newTask);
-    } catch (error) {
-      res.status(400).json({ error: "No se pudo crear la tarea" });
-    }
-  };
+
+
 
   // Actualizar una tarea
 export const updateTask = async (req, res) => {
