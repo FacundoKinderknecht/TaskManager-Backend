@@ -12,10 +12,14 @@ const PORT = process.env.PORT || 5000;
 
 // Middlewares
 const corsOptions = {
-  origin: ["https://facundokinderknecht.github.io/TaskManager-Frontend"],
+  origin: ["https://facundokinderknecht.github.io"], // Permitir GitHub Pages
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials:true, //Permitir posibles cookies
-}
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 
 app.use(cors(corsOptions));
 app.use(express.json());
