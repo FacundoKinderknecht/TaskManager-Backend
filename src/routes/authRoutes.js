@@ -5,6 +5,7 @@ import User from "../models/User.js";
 import verifyToken from "../middleware/authmiddleware.js";
 
 
+
 const router = express.Router();
 
 router.post("/auth/register", async (req, res) => {

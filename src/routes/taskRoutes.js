@@ -4,6 +4,12 @@ import  verifyToken  from "../middleware/authmiddleware.js"; //Importamos el mid
 import Task from "../models/Task.js";
 const router = express.Router();
 
+
+router.get("/", verifyToken, getTasks); 
+router.post("/", verifyToken, createTask);  
+router.put("/:id", verifyToken, updateTask);
+router.delete("/:id", verifyToken, deleteTask);
+
 // Obtener una tarea por ID (Solo si pertenece al usuario autenticado)
 router.get("/:id", verifyToken, async (req, res) => {
     try {
@@ -16,12 +22,5 @@ router.get("/:id", verifyToken, async (req, res) => {
         res.status(500).json({ message: "Error al obtener la tarea" });
     }
 });
-
-
-
-router.get("/", verifyToken, getTasks); 
-router.post("/", verifyToken, createTask);  
-router.put("/:id", verifyToken, updateTask);
-router.delete("/:id", verifyToken, deleteTask);
 
 export default router;
