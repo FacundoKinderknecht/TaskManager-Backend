@@ -11,11 +11,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middlewares
-app.use(cors({
-    origin: ["https://facundokinderknecht.github.io"], //Permite la comunicacion del Frontend con el Backend
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials:true, //Permitir posibles cookies
-}));
+const corsOptions = {
+  origin: ["https://facundokinderknecht.github.io/TaskManager-Frontend/"],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials:true, //Permitir posibles cookies
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Conectar a la base de datos
