@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middlewares
 const corsOptions = {
-  origin: ["https://facundokinderknecht.github.io/TaskManager-Frontend/"],
+  origin: ["https://facundokinderknecht.github.io/TaskManager-Frontend"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials:true, //Permitir posibles cookies
 }
