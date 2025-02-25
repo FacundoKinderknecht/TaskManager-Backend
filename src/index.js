@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 5000;
 
 // Middlewares
 app.use(cors({
-    origin: 'http://localhost:5173', //Permite la comunicacion del Frontend con el Backend
+    origin: ["https://facundokinderknecht.github.io"], //Permite la comunicacion del Frontend con el Backend
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials:true, //Permitir posibles cookies
 }));
 app.use(express.json());
